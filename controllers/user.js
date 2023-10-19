@@ -3,10 +3,6 @@ import { User } from '../models/user.js';
 export const getAllUsers = async (req, res) => {
    const users = await User.find({});
 
-   // console.log(req.query);
-   const keyword = req.query.keyword;
-   // console.log(keyword);
-
    res.json({
       success: true,
       users,
@@ -30,7 +26,6 @@ export const register = async (req, res) => {
 
 export const getUser = async (req, res) => {
    const { id } = req.body;
-   // const { id } = req.query;
    const user = await User.findById(id);
    res.json({
       success: true,
@@ -48,7 +43,6 @@ export const getSpecial = (req, res) => {
 export const getUserUsingDyanmicRoute = async (req, res) => {
    const { keyword } = req.params;
    const user = await User.findById(keyword);
-   // console.log(req.params);
    res.json({
       success: true,
       user,
