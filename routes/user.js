@@ -1,24 +1,12 @@
 import express from 'express';
-import {
-   deleteUser,
-   getAllUsers,
-   getSpecial,
-   getUser,
-   getUserUsingDyanmicRoute,
-   register,
-   updateUser,
-} from '../controllers/user.js';
+import { getProfile, login, logout, register } from '../controllers/user.js';
+import { isAuthenticated } from '../middlewares/auth.js';
 
 const router = express.Router();
 
-router.get('/all', getAllUsers);
+router.post('/login', login);
+router.get('/logout', logout);
 router.post('/new', register);
-router.get('/userid', getUser);
-router.get('/userid/special', getSpecial);
-router
-   .route('/userid/:keyword')
-   .get(getUserUsingDyanmicRoute)
-   .put(updateUser)
-   .post(deleteUser);
+router.get('/profile', isAuthenticated, getProfile);
 
 export default router;
