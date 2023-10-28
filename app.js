@@ -14,6 +14,7 @@ export const app = express();
 
 app.use(express.json()); // Make sure to use express.json() before router or else any route specified can not access json data
 app.use(cookieParser());
+// Middleware to communicate between frontend and backend
 app.use(
    cors({
       origin: [process.env.FRONTEND_URL],
